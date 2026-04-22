@@ -25,7 +25,7 @@ export default async function CuisinePage({ params }: Props) {
       {/* Breadcrumb */}
       <nav className="txt-small text-ui-fg-muted mb-8 flex items-center gap-x-2">
         <Link href={`/${countryCode}`} className="hover:text-ui-fg-base">
-          Accueil
+          Home
         </Link>
         <span>/</span>
         <span className="text-ui-fg-base">{label}</span>
@@ -55,7 +55,7 @@ export default async function CuisinePage({ params }: Props) {
             </div>
             <p className="txt-small text-ui-fg-subtle">{r.address}</p>
             <span className="txt-small text-ui-fg-interactive mt-auto">
-              Voir le menu →
+              View menu →
             </span>
           </Link>
         ))}

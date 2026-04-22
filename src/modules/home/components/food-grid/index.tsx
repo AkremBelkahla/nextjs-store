@@ -84,7 +84,7 @@ const FoodGrid = ({ cuisineGroups }: FoodGridProps) => {
                   </div>
                 ) : (
                   <p className="txt-small text-ui-fg-muted italic">
-                    Aucun plat disponible pour ce restaurant.
+                    No dishes available for this restaurant.
                   </p>
                 )}
               </div>

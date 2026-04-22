@@ -30,7 +30,7 @@ export default async function RestaurantPage({ params }: Props) {
       {/* Breadcrumb */}
       <nav className="txt-small text-ui-fg-muted mb-8 flex items-center gap-x-2 flex-wrap">
         <Link href={`/${countryCode}`} className="hover:text-ui-fg-base">
-          Accueil
+          Home
         </Link>
         <span>/</span>
         <Link
@@ -64,7 +64,7 @@ export default async function RestaurantPage({ params }: Props) {
       {/* Menu */}
       {menu.length === 0 ? (
         <p className="text-ui-fg-muted italic">
-          Aucun plat disponible pour ce restaurant.
+          No dishes available for this restaurant.
         </p>
       ) : (
         <div className="grid grid-cols-1 small:grid-cols-2 medium:grid-cols-3 large:grid-cols-4 gap-6">
