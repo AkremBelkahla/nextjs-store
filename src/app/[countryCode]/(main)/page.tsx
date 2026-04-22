@@ -1,40 +1,34 @@
 import { Metadata } from "next"
 
-import FeaturedProducts from "@modules/home/components/featured-products"
-import Hero from "@modules/home/components/hero"
-import { listCollections } from "@lib/data/collections"
-import { getRegion } from "@lib/data/regions"
+import FoodGrid from "@modules/home/components/food-grid"
+import { listFoodItems } from "@lib/data/food"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
-  description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+  title: "Food Store",
+  description: "Découvrez notre sélection de plats délicieux.",
 }
 
-export default async function Home(props: {
-  params: Promise<{ countryCode: string }>
-}) {
-  const params = await props.params
-
-  const { countryCode } = params
-
-  const region = await getRegion(countryCode)
-
-  const { collections } = await listCollections({
-    fields: "id, handle, title",
-  })
-
-  if (!collections || !region) {
-    return null
-  }
+export default async function Home() {
+  const items = await listFoodItems({ sortbyprice: "asc" })
 
   return (
     <>
-      <Hero />
-      <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
+      <div className="h-[40vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle flex items-center justify-center">
+        <div className="text-center flex flex-col gap-4">
+          <h1 className="text-4xl font-semibold text-ui-fg-base">
+            Bienvenue sur Food Store 🍽️
+          </h1>
+          <p className="text-ui-fg-subtle text-lg">
+            Explorez nos plats et saveurs du monde entier
+          </p>
+        </div>
+      </div>
+
+      <div className="content-container py-12">
+        <h2 className="text-2xl font-semibold text-ui-fg-base mb-8">
+          Tous les plats
+        </h2>
+        <FoodGrid items={items} />
       </div>
     </>
   )
