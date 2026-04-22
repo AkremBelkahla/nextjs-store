@@ -1,5 +1,11 @@
 const FOOD_API_BASE = "https://fakerestaurantapi.runasp.net/api"
 
+export const slugify = (name: string) =>
+  name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+
 export type FoodItem = {
   itemID: number
   itemName: string
@@ -40,6 +46,11 @@ export const listRestaurants = async (params?: {
   return fetch(url.toString(), { next: { revalidate: 3600 } })
     .then((res) => res.json())
     .catch(() => [])
+}
+
+export const getRestaurantBySlug = async (slug: string): Promise<Restaurant | null> => {
+  const restaurants = await listRestaurants()
+  return restaurants.find((r) => slugify(r.restaurantName) === slug) ?? null
 }
 
 export const getRestaurantMenu = async (restaurantId: number): Promise<FoodItem[]> => {

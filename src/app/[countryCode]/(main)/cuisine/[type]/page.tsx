@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { listRestaurants } from "@lib/data/food"
+import { listRestaurants, slugify } from "@lib/data/food"
 import { notFound } from "next/navigation"
 
 type Props = { params: Promise<{ countryCode: string; type: string }> }
@@ -40,7 +40,7 @@ export default async function CuisinePage({ params }: Props) {
         {restaurants.map((r) => (
           <Link
             key={r.restaurantID}
-            href={`/${countryCode}/cuisine/${encodeURIComponent(type)}/${r.restaurantID}`}
+            href={`/${countryCode}/cuisine/${encodeURIComponent(type)}/${slugify(r.restaurantName)}`}
             className="group flex flex-col gap-y-3 bg-white border border-ui-border-base rounded-xl p-6 hover:border-ui-border-interactive hover:shadow-md transition-all duration-200"
           >
             <div className="flex items-start justify-between gap-x-3">
