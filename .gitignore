@@ -3,7 +3,8 @@
 # IDEs
 .idea
 .vscode
-
+.github
+.yarn
 # dependencies
 /node_modules
 /.pnp
